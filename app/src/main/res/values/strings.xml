@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">App1</string>
+    <string name="facebook_app_id">493885477632364</string>
+    <string name="fb_login_protocol_scheme">fb493885477632364</string>
+    <string name="cancel_login">Se canceló la operación</string>
+    <string name="error_login">Ocurrió un error al ingresar</string>
+    <string name="logout">Cerrar sesión</string>
+
+</resources>
