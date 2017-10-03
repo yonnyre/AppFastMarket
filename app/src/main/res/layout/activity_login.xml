@@ -2,103 +2,194 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/new_login"
     tools:context=".Login">
 
+    <com.flaviofaria.kenburnsview.KenBurnsView
+        android:id="@+id/image"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:scaleType="centerCrop"
+        android:src="@drawable/supermarket_949913"
+    />
+
+
+
     <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="205dp"
-        android:src="@drawable/mark"
-        android:layout_marginStart="29dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true" />
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="375dp"
-        android:layout_marginTop="205dp"
+    android:layout_width="match_parent"
+    android:layout_height="155dp"
+    android:src="@drawable/shopping_icon_2184065_1280"
+    android:layout_marginTop="30dp"
+    />
+
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:weightSum="1"
-        android:id="@+id/linearLayout">
+        android:layout_marginTop="230dp"
+        >
 
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_input_layout"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <EditText
-                android:id="@+id/usuario"
-                android:layout_margin="8dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="Username"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff"/>
-        </android.support.design.widget.TextInputLayout>
-
-
-        <android.support.design.widget.TextInputLayout
-            android:id="@+id/text_input_layout2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
-            <EditText
-                android:id="@+id/contraseña"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="8dp"
-                android:hint="Password"
-                android:inputType="textPassword"
-                android:textColor="#ffffff"
-                android:textColorHint="#ffffff" />
-        </android.support.design.widget.TextInputLayout>
-        <Button
-            android:id="@+id/btnIngresar"
-            android:layout_width="159dp"
+        <TextView
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
-            android:text="Iniciar Sesión"
-            android:gravity="center"
-            android:layout_gravity="center"
-            android:background="@drawable/boton_redondo"
-            android:layout_weight="0.13" />
-    </LinearLayout>
+            android:text="¡Hola, te damos la"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"
+            />
+
+        <TextView
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="bienvenida!"
+            android:textStyle="bold"
+            android:textColor="#fff"
+            android:textSize="25dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="30dp"
+        />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Ingresa con tu red social de preferencia"
+            android:layout_centerHorizontal="true"
+            android:textColor="#fff"
+            android:textSize="15dp"
+            android:layout_marginTop="70dp"
+            android:textStyle="bold"
+            />
+
+
+
+    </RelativeLayout>
+
 
     <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="205dp"
-        android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="455dp"
-        android:weightSum="1">
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="0.6"
+        android:background="#80000000"
+        android:paddingTop="125dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:layout_marginTop="220dp"
+          android:layout_weight="0.5">
+
+            <ImageButton
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:padding="15dp"
+                android:id="@+id/iniciar"
+                android:scaleType="centerCrop"
+                android:background="@drawable/background_boton_google"
+                android:src="@drawable/ic_google"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignParentEnd="true" />
+      </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="220dp"
+            android:layout_weight="0.5">
+
+
+
+        <ImageButton
+                android:id="@+id/face"
+                android:layout_width="60dp"
+                android:layout_height="60dp"
+                android:background="@drawable/background_boton_facebook"
+                android:src="@mipmap/ic_fa"
+                android:onClick="fac"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_centerVertical="true"
+                android:layout_alignStart="@+id/loginButton" />
+        </RelativeLayout>
+    </LinearLayout>
 
     <com.facebook.login.widget.LoginButton
         android:id="@+id/loginButton"
+        android:layout_width="150dp"
+        android:layout_height="155dp"
+        android:layout_marginLeft="23dp"
+        android:layout_marginTop="65dp"
+        android:visibility="invisible"
+        />
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingBottom="11dp"
-        android:paddingTop="10dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentTop="true"
+        android:layout_alignParentStart="true">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Saltar Login"
+            android:textAlignment="center"
+            android:onClick="omitirLogin"
+            android:textStyle="bold"
+
+            android:textSize="15dp"
+            android:layout_marginTop="435dp"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="315dp"
+        android:layout_centerHorizontal="true"
+        android:layout_height="1dp"
+        android:layout_marginTop="475dp"
+        android:background="#fff"
+
+        >
 
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="O"
-        android:layout_marginTop="3dp"
-        android:layout_gravity="center"
-        android:textColor="#111111"
-        android:id="@+id/textView" />
+    </LinearLayout>
+
+     <LinearLayout
+         android:layout_width="wrap_content"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="495dp"
+         android:orientation="vertical"
+         android:layout_centerHorizontal="true"
+         >
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="#fff"
+             android:textStyle="bold"
+             android:text="Al registrarte con tus redes sociales, ingresar como "/>
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="#fff"
+             android:textStyle="bold"
+             android:text="visitante, aceptas los terminos y condiciones de "/>
+
+         <TextView
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:textColor="#fff"
+             android:textStyle="bold"
+             android:text="uso de la aplicacion."/>
+
+     </LinearLayout>
 
 
-    <com.google.android.gms.common.SignInButton
-        android:layout_width="135dp"
-        android:id="@+id/iniciar"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_below="@+id/textView"
-        android:layout_alignStart="@+id/loginButton">
 
-    </com.google.android.gms.common.SignInButton>
-</LinearLayout>
-</RelativeLayout>
+    </RelativeLayout>
+
+
+
+

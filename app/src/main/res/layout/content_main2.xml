@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:design="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.yonny.app1.Main2Activity"
+    tools:showIn="@layout/app_bar_main2">
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="544dp"
+        android:layout_marginTop="58dp"
+        android:id="@+id/contenedor">
+
+    </RelativeLayout>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="4dp"
+            android:layout_gravity="top"
+            android:background="@color/bb_darkBackgroundColor" />
+
+        <android.support.design.widget.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            design:menu="@menu/bottombar_tabs" />
+
+    </FrameLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
+
