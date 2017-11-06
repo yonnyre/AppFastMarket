@@ -5,4 +5,8 @@
     <dimen name="nav_header_vertical_spacing">16dp</dimen>
     <dimen name="nav_header_height">160dp</dimen>
     <dimen name="fab_margin">16dp</dimen>
+    <dimen name="activity_margin">16dp</dimen>
+    <dimen name="all_cardview_border">3dp</dimen>
+    <dimen name="card_label_width">8dp</dimen>
+
 </resources>

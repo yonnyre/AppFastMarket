@@ -17,6 +17,7 @@
     <ImageView
     android:layout_width="match_parent"
     android:layout_height="155dp"
+        android:elevation="5dp"
     android:src="@drawable/shopping_icon_2184065_1280"
     android:layout_marginTop="30dp"
     />
@@ -83,6 +84,7 @@
                 android:layout_width="60dp"
                 android:layout_height="60dp"
                 android:padding="15dp"
+                android:elevation="5dp"
                 android:id="@+id/iniciar"
                 android:scaleType="centerCrop"
                 android:background="@drawable/background_boton_google"
@@ -107,6 +109,7 @@
                 android:layout_height="60dp"
                 android:background="@drawable/background_boton_facebook"
                 android:src="@mipmap/ic_fa"
+                android:elevation="5dp"
                 android:onClick="fac"
                 android:layout_marginLeft="15dp"
                 android:layout_marginRight="15dp"

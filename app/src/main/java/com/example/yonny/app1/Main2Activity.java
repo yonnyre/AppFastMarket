@@ -1,39 +1,36 @@
 package com.example.yonny.app1;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.internal.BottomNavigationItemView;
 import android.support.design.internal.BottomNavigationMenuView;
 import android.support.design.widget.BottomNavigationView;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
+import android.support.design.widget.NavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
-import android.view.View;
-import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.ImageView;
+import android.view.Window;
 import android.widget.TextView;
 import android.widget.Toast;
 
-
 import com.bumptech.glide.Glide;
+import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -43,22 +40,14 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
-import com.google.android.gms.common.api.ResultCallback;
-import com.google.android.gms.common.api.Status;
-
-import java.lang.reflect.Field;
-
-import de.hdodenhof.circleimageview.CircleImageView;
-import android.view.View;
-
-import com.facebook.AccessToken;
-import com.facebook.login.LoginManager;
 import com.squareup.picasso.Picasso;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.Field;
+
+import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Main2Activity extends AppCompatActivity
@@ -80,6 +69,7 @@ public class Main2Activity extends AppCompatActivity
         setContentView(R.layout.activity_main2);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
 
 
 
@@ -112,20 +102,24 @@ public class Main2Activity extends AppCompatActivity
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+
+
+
+
+
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-
+                Fragment fragmentoGenerico = null;
 
                 FragmentManager fragmentManager = getSupportFragmentManager();
                 int id = item.getItemId();
 
                 if (id == R.id.nav_camera) {
+
+                    fragmentoGenerico=new Fragment1();
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment1()).commit();
-                } else if (id == R.id.nav_gallery) {
-                    fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment2()).commit();
-                    //
-                } else if (id == R.id.nav_slideshow) {
+                }  else if (id == R.id.nav_slideshow) {
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment3()).commit();
                     //
                 } else if (id == R.id.nav_manage) {
@@ -135,9 +129,18 @@ public class Main2Activity extends AppCompatActivity
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment4()).commit();
                     //
                 }
+                if (fragmentoGenerico != null) {
+                    fragmentManager
+                            .beginTransaction()
+                            .replace(R.id.contenedor, fragmentoGenerico)
+                            .commit();
+                }
+
+                setTitle(item.getTitle());
 
                 return true;
             }
+
         });
 
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -148,7 +151,11 @@ public class Main2Activity extends AppCompatActivity
                 .enableAutoManage(this, this)
                 .addApi(Auth.GOOGLE_SIGN_IN_API, gso)
                 .build();
+
+
+        setFragment(0);
     }
+
 
     private void removeShiftMode(BottomNavigationView bottomNavigationView) {
         BottomNavigationMenuView menuView = (BottomNavigationMenuView) bottomNavigationView.getChildAt(0);
@@ -181,12 +188,13 @@ public class Main2Activity extends AppCompatActivity
         }
     }
 
-    @Override
+  @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.main2, menu);
         return true;
     }
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -197,6 +205,7 @@ public class Main2Activity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+
             return true;
         }
 
@@ -208,18 +217,17 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-
+        Fragment fragmentoGenerico = null;
         int id = item.getItemId();
 
         FragmentManager fragmentManager=getSupportFragmentManager();
 
         if (id == R.id.nav_camera) {
-
            fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment1()).commit();
+
             // Handle the camera action
         } else if (id == R.id.nav_gallery) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment2()).commit();
-
         } else if (id == R.id.nav_slideshow) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment3()).commit();
         } else if (id == R.id.nav_manage) {
@@ -241,7 +249,13 @@ public class Main2Activity extends AppCompatActivity
                 }
             });
         }
-
+        if (fragmentoGenerico != null) {
+            fragmentManager
+                    .beginTransaction()
+                    .replace(R.id.contenedor, fragmentoGenerico)
+                    .commit();
+        }
+        setTitle(item.getTitle());
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -266,7 +280,7 @@ public class Main2Activity extends AppCompatActivity
         }
     }
 
-    private void handleSignInResult(GoogleSignInResult result) {
+    public void handleSignInResult(GoogleSignInResult result) {
         if (result.isSuccess() ) {
 
             GoogleSignInAccount account = result.getSignInAccount();
@@ -275,13 +289,28 @@ public class Main2Activity extends AppCompatActivity
               //      .load(photoUrl)
                 //    .into(photoImageView);
             Picasso.with(this).load(account.getPhotoUrl()).into(photoImageView);
+
            // Glide.with(this).load(account.getPhotoUrl()).into(photoImageView);
 
-            TextView textFullname = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nameTextView1);
-            textFullname.setText(account.getDisplayName());
-
+            TextView textFullname = (TextView)navigationView.getHeaderView(0).findViewById(R.id.nameTextView1);
+            String valo=account.getDisplayName();
+            textFullname.setText(valo);
             TextView textFullemail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.emailTextView);
+            String valo1=account.getEmail();
             textFullemail.setText(account.getEmail());
+
+            SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
+
+            SharedPreferences.Editor editor = prefs.edit();
+
+            editor.putString("nombre", valo);
+            editor.putString("email", valo1);
+            editor.commit();
+
+
+
+
+
         }else if(AccessToken.getCurrentAccessToken()!=null){
 
             requestEmail(AccessToken.getCurrentAccessToken());
@@ -297,6 +326,10 @@ public class Main2Activity extends AppCompatActivity
         } else {
             goLogInScreen();
         }
+    }
+
+    public interface TextListener {
+        void sendText(String s);
     }
 
     private void goLogInScreen() {
@@ -317,6 +350,11 @@ public class Main2Activity extends AppCompatActivity
 
         TextView textFullname = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nameTextView1);
         textFullname.setText(name);
+
+        SharedPreferences prefs1 = getSharedPreferences("MyPreferences1", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor1 = prefs1.edit();
+        editor1.putString("facebo",name);
+
     }
 
     private void requestEmail(AccessToken currentAccessToken) {
@@ -331,7 +369,7 @@ public class Main2Activity extends AppCompatActivity
                     String email = object.getString("email");
                     setEmail(email);
                 } catch (JSONException e) {
-                    Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
+            //        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_LONG).show();
                 }
             }
         });
@@ -351,6 +389,27 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
+    }
+    public void setFragment(int position) {
+        FragmentManager fragmentManager;
+        FragmentTransaction fragmentTransaction;
+        switch (position) {
+            case 0:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment1 inboxFragment = new Fragment1();
+                fragmentTransaction.replace(R.id.contenedor, inboxFragment);
+                fragmentTransaction.commit();
+                break;
+
+            case 1:
+                fragmentManager = getSupportFragmentManager();
+                fragmentTransaction = fragmentManager.beginTransaction();
+                Fragment2 starredFragment = new Fragment2();
+                fragmentTransaction.replace(R.id.contenedor,starredFragment);
+                fragmentTransaction.commit();
+                break;
+        }
     }
 
 }
