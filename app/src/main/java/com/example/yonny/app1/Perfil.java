@@ -6,13 +6,17 @@ package com.example.yonny.app1;
 
 public class Perfil {
     String nombre;
+    String precio;
+    String detalle;
 
     public Perfil() {
         super();
     }
 
-    public Perfil(String nombre) {
+    public Perfil(String nombre, String precio, String detalle) {
         this.nombre = nombre;
+        this.precio = precio;
+        this.detalle = detalle;
     }
 
     public String getNombre() {
@@ -23,10 +27,28 @@ public class Perfil {
         this.nombre = nombre;
     }
 
+    public String getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(String precio) {
+        this.precio = precio;
+    }
+
+    public String getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(String detalle) {
+        this.detalle = detalle;
+    }
+
     @Override
     public String toString() {
         return "Perfil{" +
                 "nombre='" + nombre + '\'' +
+                ", precio='" + precio + '\'' +
+                ", detalle='" + detalle + '\'' +
                 '}';
     }
 }

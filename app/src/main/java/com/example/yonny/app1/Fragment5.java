@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.Auth;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInResult;
@@ -25,10 +26,14 @@ import com.google.android.gms.common.api.Status;
 
 import java.util.List;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
 public class Fragment5 extends Fragment   {
 
     private RecyclerView recyclerView;
     private TextView textNombre1;
+    private CircleImageView imageView;
+
     private TextView textNombre2;
 
     public void Fragment5(){
@@ -43,14 +48,20 @@ public class Fragment5 extends Fragment   {
         SharedPreferences prefs = getActivity().getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
         String name  =  prefs.getString("nombre", "null");
-        String email = prefs.getString("email", "null");
+        imageView = (CircleImageView) view.findViewById(R.id.profile_image);
 
 
         textNombre1 = (TextView)view.findViewById(R.id.text_nombre);
-        textNombre2 = (TextView)view.findViewById(R.id.text_email);
 
         textNombre1.setText(name);
-        textNombre2.setText(email);
+        Bundle args = getArguments();
+        String photo = args.getString("photo", "No photo");
+        if (photo != "0"){
+            Glide.with(getActivity()).load(photo).into(imageView);
+        } else {
+            imageView.getResources().getDrawable(R.drawable.background_boton_facebook);
+        }
+
 
         return view;
     }

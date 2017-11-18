@@ -8,12 +8,26 @@
 
 
 
+    <android.support.v4.widget.SwipeRefreshLayout
+        android:id="@+id/srlContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context="com.example.yonny.app1.Fragment3">
 
 
-     <android.support.v7.widget.RecyclerView
-          android:layout_width="match_parent"
-          android:layout_height="match_parent"
-          android:id="@+id/recyclerview"
-        />
 
-  </FrameLayout>
+      <android.support.v7.widget.RecyclerView
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:id="@+id/recyclerview"
+         />
+    </android.support.v4.widget.SwipeRefreshLayout>
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Button"/>
+
+
+</FrameLayout>

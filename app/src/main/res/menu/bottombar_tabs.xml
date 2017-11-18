@@ -10,6 +10,12 @@
         android:id="@+id/nav_slideshow"
         android:icon="@drawable/basket"
         android:title="Compras" />
+
+    <item
+        android:id="@+id/nav_ubicacion"
+        android:icon="@drawable/ic_location"
+        android:title="Tiendas" />
+
     <item
         android:id="@+id/nav_share"
         android:icon="@drawable/credit_card"

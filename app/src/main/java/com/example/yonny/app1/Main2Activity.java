@@ -21,6 +21,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.Window;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -58,6 +59,8 @@ public class Main2Activity extends AppCompatActivity
     private TextView nameTextView1;
     private TextView emailTextView;
     private TextView idTextView;
+    private Button button;
+    private String photo = "0";
     private ProfileTracker profileTracker;
     NavigationView navigationView;
 
@@ -121,9 +124,24 @@ public class Main2Activity extends AppCompatActivity
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment1()).commit();
                 }  else if (id == R.id.nav_slideshow) {
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment3()).commit();
+
                     //
+                }else if (id == R.id.nav_ubicacion) {
+                    fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment6()).commit();
+
                 } else if (id == R.id.nav_manage) {
-                    fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment5()).commit();
+                   // fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment5()).commit();
+
+                    Fragment5 perfilFragment = new Fragment5();
+                    FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
+                    transaction4.replace(R.id.contenedor, perfilFragment);
+
+
+                    Bundle args = new Bundle();
+                    args.putString("photo", photo);
+                    perfilFragment.setArguments(args);
+
+                    transaction4.commit();
 
                 } else if (id == R.id.nav_share) {
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment4()).commit();
@@ -232,6 +250,10 @@ public class Main2Activity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment3()).commit();
         } else if (id == R.id.nav_manage) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment5()).commit();
+        }else if (id == R.id.nav_ubicacion) {
+            fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment6()).commit();
+
+
         } else if (id == R.id.nav_share) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment4()).commit();
         } else if (id == R.id.nav_send) {
@@ -288,9 +310,13 @@ public class Main2Activity extends AppCompatActivity
             //Glide.with(getApplicationContext())
               //      .load(photoUrl)
                 //    .into(photoImageView);
-            Picasso.with(this).load(account.getPhotoUrl()).into(photoImageView);
+           // Picasso.with(this).load(account.getPhotoUrl()).into(photoImageView);
 
            // Glide.with(this).load(account.getPhotoUrl()).into(photoImageView);
+            if(account.getPhotoUrl() != null){
+                Glide.with(getApplicationContext()).load(account.getPhotoUrl()).into(photoImageView);
+                photo = account.getPhotoUrl().toString();
+            }
 
             TextView textFullname = (TextView)navigationView.getHeaderView(0).findViewById(R.id.nameTextView1);
             String valo=account.getDisplayName();
@@ -304,6 +330,7 @@ public class Main2Activity extends AppCompatActivity
             SharedPreferences.Editor editor = prefs.edit();
 
             editor.putString("nombre", valo);
+            editor.putString("perfil", valo);
             editor.putString("email", valo1);
             editor.commit();
 
@@ -347,9 +374,13 @@ public class Main2Activity extends AppCompatActivity
         Glide.with(getApplicationContext())
                 .load(photoUrl)
                 .into(photoImageView);
-
+        photo = profile.getProfilePictureUri(100, 100).toString();
         TextView textFullname = (TextView) navigationView.getHeaderView(0).findViewById(R.id.nameTextView1);
         textFullname.setText(name);
+
+        Glide.with(getApplicationContext())
+                .load(photo)
+                .into(photoImageView);
 
         SharedPreferences prefs1 = getSharedPreferences("MyPreferences1", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor1 = prefs1.edit();
@@ -437,4 +468,6 @@ class BottomNavigationViewHelper {
             Log.e("ERROR ILLEGAL ALG", "Unable to change value of shift mode");
         }
     }
+
+
 }

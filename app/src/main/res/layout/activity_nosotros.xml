@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="155dp"
+    android:background="#3c3d3d"
+    android:layout_centerVertical="true"
+    tools:context="com.example.yonny.app1.NosotrosActivity">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Find Bank | Nosotros"
+                    android:textSize="32sp"
+                    android:gravity="center"
+                    android:layout_margin="12dp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="nosotros"
+                    android:textSize="18sp"
+                    android:layout_margin="12dp"
+                    />
+                <Button
+                    android:id="@+id/nosotros"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Contactanos"
+                    android:layout_margin="12dp"
+                    android:textAllCaps="false"
+                    android:textSize="20dp"/>
+        </LinearLayout>
+
+</RelativeLayout>
