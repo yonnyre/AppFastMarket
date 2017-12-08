@@ -1,59 +1,109 @@
-<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                                 xmlns:app="http://schemas.android.com/apk/res-auto"
+                                                 android:id="@+id/coordinator"
+                                                 android:layout_width="match_parent"
+                                                 android:layout_height="match_parent">
 
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/brand_main_3">
-
-    <FrameLayout
+    <android.support.v4.widget.NestedScrollView
+        android:id="@+id/scroll"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <com.redbooth.SlidingDeck
-            style="@style/slideDeck"
-            android:id="@+id/slidingDeck" />
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
-            android:id="@+id/emptyView"
             android:layout_width="match_parent"
-            android:layout_height="150dp"
+            android:layout_height="match_parent"
             android:orientation="vertical"
-            android:gravity="center">
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin">
+
 
             <TextView
+                android:id="@+id/detail_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/brand_main"
-                android:textSize="25sp"
-                android:text="@string/nice_job"/>
+                android:text="Nombre"
+                android:textAppearance="?android:attr/textAppearanceMedium" />
 
             <TextView
+                android:id="@+id/detail_price"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textColor="@color/brand_main_1"
-                android:textSize="18sp"
-                android:text="@string/no_task"/>
+                android:text="Precio"
+                android:textColor="?colorPrimary"
+                android:textStyle="bold" />
 
+            <TextView
+                android:id="@+id/tag_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:text="DESCRIPCIÓN"
+                android:textColor="?colorPrimary" />
+
+            <TextView
+                android:id="@+id/detail_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Descripción" />
+
+            <RatingBar
+                android:id="@+id/detail_rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:isIndicator="true"
+                android:paddingTop="8dp"
+                android:progressTint="#FDDB39"
+                android:rating="3"
+                android:secondaryProgressTint="#FDDB39" />
+
+            <TextView
+                android:id="@+id/detail_author"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Autor" />
         </LinearLayout>
-    </FrameLayout>
 
-    <android.support.v7.widget.CardView
+
+    </android.support.v4.widget.NestedScrollView>
+    <!-- App Bar -->
+    <android.support.design.widget.AppBarLayout
+        android:id="@+id/app_bar"
         android:layout_width="match_parent"
-        android:layout_marginLeft="@dimen/activity_vertical_margin"
-        android:layout_marginRight="@dimen/activity_vertical_margin"
-        android:layout_height="wrap_content">
+        android:layout_height="256dp"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/grey_dark"
-            android:fontFamily="sans-serif"
-            android:padding="@dimen/activity_horizontal_margin"
-            android:layout_gravity="center"
-            android:textSize="15sp"
-            android:text="@string/fill_text"/>
+        <!-- Toolbar -->
+        <android.support.v7.widget.Toolbar xmlns:app="http://schemas.android.com/apk/res-auto"
+                                           android:id="@+id/toolbar"
+                                           android:layout_width="match_parent"
+                                           android:layout_height="?attr/actionBarSize"
+                                           app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+                                           app:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar" />
+        <!-- Imagen del detalle -->
+        <ImageView
+            android:id="@+id/detail_image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:transitionName="shared_image" />
 
-    </android.support.v7.widget.CardView>
-</LinearLayout>
+
+    </android.support.design.widget.AppBarLayout>
+    <!-- FAB -->
+    <android.support.design.widget.FloatingActionButton
+        android:id="@+id/fab"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
+        android:layout_margin="@dimen/fab_margin"
+        android:src="@drawable/yesbank_logo"
+        app:borderWidth="0dp"
+        app:elevation="5dp"
+        app:layout_anchor="@id/app_bar"
+        app:layout_anchorGravity="bottom|right|end" />
+
+
+</android.support.design.widget.CoordinatorLayout>

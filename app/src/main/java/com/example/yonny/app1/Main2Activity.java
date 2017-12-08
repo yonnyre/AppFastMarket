@@ -15,16 +15,20 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
+import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 import com.bumptech.glide.Glide;
 import com.facebook.AccessToken;
 import com.facebook.GraphRequest;
@@ -41,25 +45,36 @@ import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.common.api.OptionalPendingResult;
 import com.google.android.gms.common.api.ResultCallback;
 import com.google.android.gms.common.api.Status;
-import com.squareup.picasso.Picasso;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.lang.reflect.Field;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 
 public class Main2Activity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,GoogleApiClient.OnConnectionFailedListener {
+    private static final String TAG = Main2Activity.class.getSimpleName();
 
     private BottomNavigationView bottomNavigationView;
+    private RecyclerView facturaList;
+    private FacturaAdapter adapter;
+    private List<Factura> facList;
     private TextView nameTextView;
     private TextView nameTextView1;
     private TextView emailTextView;
     private TextView idTextView;
+    private int id;
+    String idFace;
+    private Fragment fragmentoGenerico;
+    private  FragmentManager fragmentManager;
     private Button button;
+    private String monto;
+    private String idfactura;
     private String photo = "0";
     private ProfileTracker profileTracker;
     NavigationView navigationView;
@@ -73,7 +88,14 @@ public class Main2Activity extends AppCompatActivity
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+      //  facturaList = (RecyclerView) findViewById(R.id.recyclerview2);
+      // facturaList.setLayoutManager(new LinearLayoutManager(this));
 
+      // facturaList.setAdapter(new FacturaAdapter(this));
+      //  FacturaAdapter adapter = new FacturaAdapter();
+     //   List<Factura> perfils = FacturaRepository.getFacturas();
+     //   adapter.setFactura(perfils);
+    //    facturaList.setAdapter(adapter);
 
 
         profileTracker = new ProfileTracker() {
@@ -108,20 +130,21 @@ public class Main2Activity extends AppCompatActivity
 
 
 
-
-
         bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragmentoGenerico = null;
+                 fragmentoGenerico = null;
 
-                FragmentManager fragmentManager = getSupportFragmentManager();
-                int id = item.getItemId();
+                 fragmentManager = getSupportFragmentManager();
+
+                 id = item.getItemId();
 
                 if (id == R.id.nav_camera) {
 
                     fragmentoGenerico=new Fragment1();
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment1()).commit();
+
+
                 }  else if (id == R.id.nav_slideshow) {
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment3()).commit();
 
@@ -145,7 +168,9 @@ public class Main2Activity extends AppCompatActivity
 
                 } else if (id == R.id.nav_share) {
                     fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment4()).commit();
-                    //
+
+
+
                 }
                 if (fragmentoGenerico != null) {
                     fragmentManager
@@ -222,7 +247,8 @@ public class Main2Activity extends AppCompatActivity
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
+        if (id == R.id.action_about) {
+            new AlertDialog.Builder(this).setView(LayoutInflater.from(this).inflate(R.layout.dialog_about, null)).create().show();
 
             return true;
         }
@@ -235,21 +261,30 @@ public class Main2Activity extends AppCompatActivity
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
-        Fragment fragmentoGenerico = null;
-        int id = item.getItemId();
+        fragmentoGenerico = null;
+        id = item.getItemId();
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
+         fragmentManager=getSupportFragmentManager();
 
         if (id == R.id.nav_camera) {
            fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment1()).commit();
 
             // Handle the camera action
-        } else if (id == R.id.nav_gallery) {
+        } /*else if (id == R.id.nav_gallery) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment2()).commit();
-        } else if (id == R.id.nav_slideshow) {
+        }*/ else if (id == R.id.nav_slideshow) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment3()).commit();
         } else if (id == R.id.nav_manage) {
-            fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment5()).commit();
+            Fragment5 perfilFragment = new Fragment5();
+            FragmentTransaction transaction4 = getSupportFragmentManager().beginTransaction();
+            transaction4.replace(R.id.contenedor, perfilFragment);
+
+
+            Bundle args = new Bundle();
+            args.putString("photo", photo);
+            perfilFragment.setArguments(args);
+
+            transaction4.commit();
         }else if (id == R.id.nav_ubicacion) {
             fragmentManager.beginTransaction().replace(R.id.contenedor,new Fragment6()).commit();
 
@@ -313,6 +348,10 @@ public class Main2Activity extends AppCompatActivity
            // Picasso.with(this).load(account.getPhotoUrl()).into(photoImageView);
 
            // Glide.with(this).load(account.getPhotoUrl()).into(photoImageView);
+
+            //idTextView.setText(account.getId());
+          //  Toast.makeText(this, account.getGivenName(), Toast.LENGTH_SHORT).show();
+
             if(account.getPhotoUrl() != null){
                 Glide.with(getApplicationContext()).load(account.getPhotoUrl()).into(photoImageView);
                 photo = account.getPhotoUrl().toString();
@@ -324,7 +363,10 @@ public class Main2Activity extends AppCompatActivity
             TextView textFullemail = (TextView) navigationView.getHeaderView(0).findViewById(R.id.emailTextView);
             String valo1=account.getEmail();
             textFullemail.setText(account.getEmail());
+            String idGoogle=account.getId()  ;
 
+            String nombres=account.getDisplayName();
+            String givenname=account.getGivenName();
             SharedPreferences prefs = getSharedPreferences("MyPreferences", Context.MODE_PRIVATE);
 
             SharedPreferences.Editor editor = prefs.edit();
@@ -332,7 +374,15 @@ public class Main2Activity extends AppCompatActivity
             editor.putString("nombre", valo);
             editor.putString("perfil", valo);
             editor.putString("email", valo1);
+            editor.putString("idgoogle",idGoogle);
+            editor.putString("idfacebook",idFace);
+            editor.putString("nombres",nombres);
+            editor.putString("givenname",givenname);
+
             editor.commit();
+
+            enviar(idGoogle,nombres,valo1);
+
 
 
 
@@ -368,6 +418,7 @@ public class Main2Activity extends AppCompatActivity
 
     private void displayProfileInfo(Profile profile) {
         String name = profile.getName();
+         idFace = profile.getId();
         CircleImageView photoImageView = (CircleImageView) navigationView.getHeaderView(0).findViewById(R.id.photoImageView);
         String photoUrl = profile.getProfilePictureUri(100, 100).toString();
 
@@ -385,8 +436,12 @@ public class Main2Activity extends AppCompatActivity
         SharedPreferences prefs1 = getSharedPreferences("MyPreferences1", Context.MODE_PRIVATE);
         SharedPreferences.Editor editor1 = prefs1.edit();
         editor1.putString("facebo",name);
+        editor1.putString("idfac",idFace);
+
+        enviar(idFace,name,"gmail@gamil.com");
 
     }
+
 
     private void requestEmail(AccessToken currentAccessToken) {
         GraphRequest request = GraphRequest.newMeRequest(currentAccessToken, new GraphRequest.GraphJSONObjectCallback() {
@@ -443,6 +498,43 @@ public class Main2Activity extends AppCompatActivity
         }
     }
 
+    public void enviar(final String id_usuario , String nombres,String email) {
+        final String idUsuario=id_usuario.toString();
+        final String nombUsu=nombres.toString();
+        final String corrUsu=email.toString();
+
+
+        com.android.volley.Response.Listener<String> responseListener=new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                try{
+
+                    JSONObject jsonResponse=new JSONObject(response);
+                    JSONArray success=jsonResponse.getJSONArray("message");
+
+                    for (int i = 0; i < success.length(); i++) {
+                        JSONObject Jasonobject = null;
+                         Jasonobject = success.getJSONObject(i);
+                         // monto = Jasonobject.getString("monto");
+                         // idfactura = Jasonobject.getString("idfactura");
+
+
+                    }
+
+
+                }catch(JSONException e){
+                    e.printStackTrace();
+                }
+
+            }
+
+        };
+        UsuarioRequest usuarioRequest=new UsuarioRequest(idUsuario,nombUsu,corrUsu,responseListener);
+        RequestQueue requestQueue= Volley.newRequestQueue(this);
+        requestQueue.add(usuarioRequest);
+
+
+    }
 }
 
 

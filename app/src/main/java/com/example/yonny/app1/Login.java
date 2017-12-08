@@ -130,6 +130,7 @@ public class Login extends AppCompatActivity implements GoogleApiClient.OnConnec
         com.google.android.gms.common.SignInButton btn = new SignInButton(this);
         btn.performClick();
     }
+
     public void omitirLogin(View view){
         Intent intent2 = new Intent(this,Main2Activity.class);
         startActivity(intent2);

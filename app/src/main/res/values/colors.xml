@@ -10,4 +10,8 @@
     <color name="grey_dark">#666666</color>
     <color name="grey_dark_2">#333333</color>
     <color name="positive_loud">#7ed321</color>
+
+        <color name="bg_row_background">#fa315b</color>
+        <color name="item_name">#535353</color>
+        <color name="description">#a9a9a9</color>
 </resources>

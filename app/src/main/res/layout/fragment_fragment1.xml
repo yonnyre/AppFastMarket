@@ -37,9 +37,8 @@
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"
                 android:layout_centerVertical="true"
-                android:textStyle="bold"
                 android:textColor="#fff"
-                android:textSize="26sp"
+                android:textSize="30sp"
                 android:text="Hola Yonny"/>
 
 
@@ -49,7 +48,7 @@
             android:layout_width="28dp"
             android:layout_height="28dp"
             android:background="@drawable/clear"
-            android:backgroundTint="#fff"
+            android:backgroundTint="#00303030"
             android:layout_gravity="right"
             android:layout_margin="1dp"
             />

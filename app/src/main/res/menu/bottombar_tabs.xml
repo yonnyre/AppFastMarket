@@ -19,9 +19,9 @@
     <item
         android:id="@+id/nav_share"
         android:icon="@drawable/credit_card"
-        android:title="Pagos" />
+        android:title="Historial" />
     <item
         android:id="@+id/nav_manage"
-        android:icon="@drawable/settings"
-        android:title="Ajustes" />
+        android:icon="@drawable/usuario"
+        android:title="Mi Perfil" />
 </menu>

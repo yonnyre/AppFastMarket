@@ -29,4 +29,14 @@
         <item name="itemsMarginLeftRight">8dp</item>
         <item name="animationDuration">200</item>
     </style>
+
+
+
+        <style name="AppTheme.NoActionBar">
+            <item name="windowActionBar">false</item>
+            <item name="windowNoTitle">true</item>
+        </style>
+
+
+
 </resources>

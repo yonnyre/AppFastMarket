@@ -22,6 +22,7 @@ public class PerfilRepository {
     public static Perfil add(Perfil perfil){
 //        perfil.setId(sequence++);
         perfils.add( perfil);
+
         return perfil;
     }
 

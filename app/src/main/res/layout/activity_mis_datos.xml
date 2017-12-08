@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.yonny.app1.Misdatos">
+
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+
+        <Button
+            android:id="@+id/atras"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="left|center"
+            android:background="@drawable/arrow_atras"
+            android:backgroundTint="#111"
+            />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Mis datos"
+            android:layout_marginTop="12dp"
+            android:textColor="#111"
+            android:textStyle="bold"
+            android:layout_marginLeft="59dp"
+            android:textSize="25dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:padding="19dp"
+                android:onClick="guardarDatos"
+                android:text="Guardar"
+                android:textColor="#e40505"
+                android:textSize="15dp"/>
+    </android.support.v7.widget.CardView>
+
+  <android.support.v7.widget.CardView
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:layout_marginTop="15dp">
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical">
+
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="18dp">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Nombre completo"
+              />
+          <LinearLayout
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="horizontal"
+              >
+
+          <EditText
+              android:id="@+id/nom_text"
+              android:layout_width="300dp"
+              android:layout_height="wrap_content"
+              android:text="yonny"
+              />
+
+          <ImageButton
+              android:layout_width="wrap_content"
+              android:src="@drawable/editar"
+              android:onClick="editarNom"
+              android:layout_gravity="center"
+              android:background="#fff"
+              android:layout_height="wrap_content"/>
+
+          </LinearLayout>
+
+      </LinearLayout>
+
+      <LinearLayout
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:orientation="vertical"
+          android:padding="18dp">
+
+          <TextView
+              android:layout_width="wrap_content"
+              android:layout_height="wrap_content"
+              android:text="Mail"
+              />
+
+          <EditText
+              android:id="@+id/mail_Text"
+              android:layout_width="300dp"
+              android:textColor="#3e3e3e"
+              android:text="yonny.rivera@tecsup.edu.pe"
+              android:layout_height="match_parent"/>
+
+      </LinearLayout>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="vertical"
+                  android:padding="18dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="DNI"
+                      />
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="horizontal"
+                      >
+                  <EditText
+                      android:id="@+id/dni_txt"
+                      android:layout_width="300dp"
+                      android:layout_height="wrap_content"
+                      android:hint="Ingresa tu DNI"/>
+                      <ImageButton
+                          android:layout_width="wrap_content"
+                          android:src="@drawable/ic_add_circle_outline_black_24dp"
+                          android:background="#fff"
+                          android:layout_gravity="center"
+                          android:onClick="editarDni"
+                          android:layout_height="wrap_content"/>
+                       </LinearLayout>
+              </LinearLayout>
+
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="match_parent"
+                  android:orientation="vertical"
+                  android:padding="18dp">
+
+                  <TextView
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Telefono"
+                      />
+
+
+                  <LinearLayout
+                      android:layout_width="match_parent"
+                      android:layout_height="wrap_content"
+                      android:orientation="horizontal"
+                      >
+
+                  <EditText
+                      android:id="@+id/telefo_txt"
+                      android:layout_width="300dp"
+                      android:layout_height="wrap_content"
+                      android:hint="Ingresa tu telefono"
+/>
+                      <ImageButton
+                          android:layout_width="wrap_content"
+                          android:onClick="editarTel"
+                          android:layout_gravity="center"
+                          android:src="@drawable/ic_add_circle_outline_black_24dp"
+                          android:background="#fff"
+                          android:layout_height="wrap_content"/>
+                      </LinearLayout>
+              </LinearLayout>
+              </LinearLayout>
+          </android.support.v7.widget.CardView>
+
+  </LinearLayout>
+
+

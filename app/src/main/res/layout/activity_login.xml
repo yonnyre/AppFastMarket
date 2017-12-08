@@ -11,7 +11,10 @@
         android:scaleType="centerCrop"
         android:src="@drawable/marketshoping"
     />
-
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#cb3e3c3c" />
 
 
     <ImageView
@@ -33,7 +36,7 @@
             android:layout_height="wrap_content"
             android:text="¡Hola, te damos la"
             android:textStyle="bold"
-            android:textColor="#fff"
+            android:textColor="#d0d0d0"
             android:textSize="25dp"
             android:layout_centerHorizontal="true"
             />
@@ -43,7 +46,7 @@
           android:layout_height="wrap_content"
           android:text="bienvenida!"
             android:textStyle="bold"
-            android:textColor="#fff"
+          android:textColor="#d0d0d0"
             android:textSize="25dp"
             android:layout_centerHorizontal="true"
             android:layout_marginTop="30dp"
@@ -54,7 +57,7 @@
             android:layout_height="wrap_content"
             android:text="Ingresa con tu red social de preferencia"
             android:layout_centerHorizontal="true"
-            android:textColor="#fff"
+            android:textColor="#d0d0d0"
             android:textSize="15dp"
             android:layout_marginTop="70dp"
             android:textStyle="bold"
@@ -132,17 +135,16 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true">
 
-        <TextView
+     <!--   <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Saltar Login"
             android:textAlignment="center"
             android:onClick="omitirLogin"
             android:textStyle="bold"
-
             android:textSize="15dp"
             android:layout_marginTop="435dp"
-            android:textColor="#fff"/>
+            android:textColor="#fff"/>    -->
 
     </LinearLayout>
 
@@ -150,6 +152,8 @@
         android:layout_width="315dp"
         android:layout_centerHorizontal="true"
         android:layout_height="1dp"
+        android:textColor="#d0d0d0"
+
         android:layout_marginTop="475dp"
         android:background="#fff"
 
@@ -168,21 +172,21 @@
          <TextView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:textColor="#fff"
+             android:textColor="#d0d0d0"
              android:textStyle="bold"
              android:text="Al registrarte con tus redes sociales, ingresar como "/>
 
          <TextView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:textColor="#fff"
+             android:textColor="#d0d0d0"
              android:textStyle="bold"
              android:text="visitante, aceptas los terminos y condiciones de "/>
 
          <TextView
              android:layout_width="wrap_content"
              android:layout_height="wrap_content"
-             android:textColor="#fff"
+             android:textColor="#d0d0d0"
              android:textStyle="bold"
              android:text="uso de la aplicacion."/>
 

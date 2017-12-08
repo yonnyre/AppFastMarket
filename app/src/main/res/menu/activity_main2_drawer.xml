@@ -8,22 +8,24 @@
             android:icon="@drawable/home"
             android:checked="true"
             android:title="Inicio" />
-        <item
-            android:id="@+id/nav_gallery"
-            android:icon="@drawable/barcode_scan"
-            android:title="Escanear" />
+
         <item
             android:id="@+id/nav_slideshow"
             android:icon="@drawable/basket"
             android:title="Compras" />
+        <item
+            android:id="@+id/nav_ubicacion"
+            android:icon="@drawable/ic_location"
+            android:title="Tiendas" />
+
         <item
             android:id="@+id/nav_share"
             android:icon="@drawable/credit_card"
             android:title="Pagos" />
         <item
             android:id="@+id/nav_manage"
-            android:icon="@drawable/settings"
-            android:title="Ajustes" />
+            android:icon="@drawable/usuario"
+            android:title="Mi perfil" />
     </group>
 
     <item android:title="Communicate">

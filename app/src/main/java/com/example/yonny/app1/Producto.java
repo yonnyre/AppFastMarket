@@ -6,27 +6,34 @@ package com.example.yonny.app1;
 
 public class Producto {
 
-    private Integer id;
     private String nombre;
     private String precio;
     private String imagen;
     private String codigo_barras;
-    private String detalles;
+    private String detalle;
     private String estado;
+
+    public Producto() {
+        super();
+    }
 
     public String getCodigo_barras() {
         return codigo_barras;
     }
+
+    public Producto(String nombre, String precio, String imagen, String codigo_barras, String detalle, String estado) {
+        this.nombre = nombre;
+        this.precio = precio;
+        this.imagen = imagen;
+        this.codigo_barras = codigo_barras;
+        this.detalle = detalle;
+        this.estado = estado;
+    }
+
     public void setCodigo_barras(String codigo_barras) {
         this.codigo_barras = codigo_barras;
     }
-    public Integer getId() {
-        return id;
-    }
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
 
     public String getNombre() {
         return nombre;
@@ -53,11 +60,11 @@ public class Producto {
     }
 
     public String getDetalles() {
-        return detalles;
+        return detalle;
     }
 
-    public void setDetalles(String detalles) {
-        this.detalles = detalles;
+    public void setDetalles(String detalle) {
+        this.detalle = detalle;
     }
 
     public String getEstado() {
@@ -71,12 +78,11 @@ public class Producto {
     @Override
     public String toString() {
         return "Producto{" +
-                "id=" + id +
-                ", nombre='" + nombre + '\'' +
+                "  nombre='" + nombre + '\'' +
                 ", precio='" + precio + '\'' +
                 ", imagen='" + imagen + '\'' +
                 ", codigo_barras='" + codigo_barras + '\'' +
-                ", detalles='" + detalles + '\'' +
+                ", detalle='" + detalle + '\'' +
                 ", estado='" + estado + '\'' +
                 '}';
     }
